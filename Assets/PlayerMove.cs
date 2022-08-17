@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// ガンマンのキャラクターを操作するコンポーネント
 /// </summary>
-public class move : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
     /// <summary>左右移動する力</summary>
     [SerializeField] float m_movePower = 5f;
