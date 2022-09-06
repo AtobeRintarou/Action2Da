@@ -1,83 +1,83 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Player ‚Ì“®‚«‚ÉŠÖ‚·‚éƒXƒNƒŠƒvƒg
-/// Player ‚É‚È‚é Object ‚ÉƒAƒ^ƒbƒ`‚µ‚Äg‚¤
+/// Player ã®å‹•ãã«é–¢ã™ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+/// Player ã«ãªã‚‹ Object ã«ã‚¢ã‚¿ãƒƒãƒã—ã¦ä½¿ã†
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-    [Header("”­Ë‚·‚é’e‚ÌƒvƒŒƒnƒu")]
+    [Header("ç™ºå°„ã™ã‚‹å¼¾ã®ãƒ—ãƒ¬ãƒãƒ–")]
     [SerializeField] GameObject _bulletPrefab = default;
-    [Header("ƒ}ƒYƒ‹‚ÌƒvƒŒƒnƒu")]
+    [Header("ãƒã‚ºãƒ«ã®ãƒ—ãƒ¬ãƒãƒ–")]
     [SerializeField] Transform _muzzle = default;
-    [Header("ƒvƒŒƒCƒ„[‚ÌˆÚ“®‘¬“x")]
+    [Header("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç§»å‹•é€Ÿåº¦")]
     [SerializeField] float _speed = 25.0f;
-    [Header("ƒvƒŒƒCƒ„[‚ÌƒWƒƒƒ“ƒv—Í")]
+    [Header("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¸ãƒ£ãƒ³ãƒ—åŠ›")]
     [SerializeField] private float _force = 70.0f;
 
-    public float Speed => _speed; // speed ‚Ì§Œä
-    // ƒvƒŒƒCƒ„[‚Ì Rigidbody
+    public float Speed => _speed; // speed ã®åˆ¶å¾¡
+    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã® Rigidbody
     Rigidbody2D m_rb = default;
-    // “ñ’iƒWƒƒƒ“ƒv‚Ì^‹U
+    // äºŒæ®µã‚¸ãƒ£ãƒ³ãƒ—ã®çœŸå½
     bool _doubleJump = false;
-    // ’n–Ê‚É—§‚Á‚Ä‚¢‚é‚©‚Ì^‹U
+    // åœ°é¢ã«ç«‹ã£ã¦ã„ã‚‹ã‹ã®çœŸå½
     bool _isGround = true;
-    // Å‰‚ÉoŒ»‚µ‚½À•W
+    // æœ€åˆã«å‡ºç¾ã—ãŸåº§æ¨™
     Vector3 m_initialPosition;
-    // ¶‰E‚ğ”½“]‚³‚¹‚é‚©‚Ì^‹U
+    // å·¦å³ã‚’åè»¢ã•ã›ã‚‹ã‹ã®çœŸå½
     bool _flipX = true;
-    // …•½•ûŒü‚Ì“ü—Í’l
+    // æ°´å¹³æ–¹å‘ã®å…¥åŠ›å€¤
     float m_h;
     float _scaleX;
 
     private void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();
-        // ‰ŠúˆÊ’u‚ğŠo‚¦‚Ä‚¨‚­
+        // åˆæœŸä½ç½®ã‚’è¦šãˆã¦ãŠã
         m_initialPosition = this.transform.position;
     }
 
     void Update()
     {
-        // “ü—Í‚ğó‚¯æ‚é
+        // å…¥åŠ›ã‚’å—ã‘å–ã‚‹
         m_h = Input.GetAxisRaw("Horizontal");
-        // ƒXƒy[ƒXƒL[‚ÅƒWƒƒƒ“ƒv
+        // ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ã§ã‚¸ãƒ£ãƒ³ãƒ—
         if (Input.GetButtonDown("Jump"))
         {
-            // Ground ‚ÉG‚ê‚Ä‚¢‚é‚Æ‚«
+            // Ground ã«è§¦ã‚Œã¦ã„ã‚‹ã¨ã
             if (_isGround)
             {
                 _isGround = false;
                 _doubleJump = true;
 
                 m_rb.AddForce(Vector2.up * _force, ForceMode2D.Impulse);
-                Debug.Log("‚³‚ç‚Î‘å’n");
+                Debug.Log("ã•ã‚‰ã°å¤§åœ°");
             }
-            // 2’iƒWƒƒƒ“ƒv‚µ‚Ä‚½‚çƒWƒƒƒ“ƒv‚Å‚«‚È‚¢
+            // 2æ®µã‚¸ãƒ£ãƒ³ãƒ—ã—ã¦ãŸã‚‰ã‚¸ãƒ£ãƒ³ãƒ—ã§ããªã„
             else if (_doubleJump)
             {
                 _doubleJump = false;
                 m_rb.AddForce(Vector2.up * _force, ForceMode2D.Impulse);
-                Debug.Log("’µ‚×‚È‚¢“Ø");
+                Debug.Log("è·³ã¹ãªã„è±š");
             }
         }
-        // ‰º‚És‚«‚·‚¬‚½‚ç‰ŠúˆÊ’u‚É–ß‚·
+        // ä¸‹ã«è¡Œãã™ããŸã‚‰åˆæœŸä½ç½®ã«æˆ»ã™
         if (this.transform.position.y < -10f)
         {
             this.transform.position = m_initialPosition;
-            Debug.Log("”»ŒˆA’n–s‚«");
+            Debug.Log("åˆ¤æ±ºã€åœ°ç„è¡Œã");
         }
-        // ¶ƒNƒŠƒbƒN‚ğ‚µ‚½‚ç
+        // å·¦ã‚¯ãƒªãƒƒã‚¯ã‚’ã—ãŸã‚‰
         if (Input.GetButtonDown("Fire1"))
         {
-            // ’e‚ğ”­Ë‚·‚éˆ—
+            // å¼¾ã‚’ç™ºå°„ã™ã‚‹å‡¦ç†
             GameObject bullet = Instantiate(_bulletPrefab);
             bullet.transform.position = _muzzle.position;
-            Debug.Log("u‚Î`‚ñv");
+            Debug.Log("ã€Œã°ï½ã‚“ã€");
         }
-        // İ’è‚É‰‚¶‚Ä¶‰E‚ğ”½“]‚³‚¹‚é
+        // è¨­å®šã«å¿œã˜ã¦å·¦å³ã‚’åè»¢ã•ã›ã‚‹
         if (_flipX)
         {
             FlipX(m_h);
@@ -85,32 +85,32 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Ground ‚ÉG‚ê‚Ä‚¢‚é‚Æ‚«
+        // Ground ã«è§¦ã‚Œã¦ã„ã‚‹ã¨ã
         if (collision.gameObject.tag == "Ground")
         {
             _isGround = true;
-            Debug.Log("’n–Ê‚É‚±‚ñ‚É‚¿‚Í");
+            Debug.Log("åœ°é¢ã«ã“ã‚“ã«ã¡ã¯");
         }
     }
     private void FixedUpdate()
     {
-        // —Í‚ğ‰Á‚¦‚é‚Ì‚Í FixedUpdate ‚Ås‚¤
+        // åŠ›ã‚’åŠ ãˆã‚‹ã®ã¯ FixedUpdate ã§è¡Œã†
         m_rb.AddForce(Vector2.right * m_h * _speed, ForceMode2D.Force);
     }
 
-    // Player ‚ÌŒü‚«‚ÉŠÖ‚·‚éƒuƒƒbƒN
+    // Player ã®å‘ãã«é–¢ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯
     void FlipX(float horizontal)
     {
         _scaleX = this.transform.localScale.x;
 
 
-        // Player ‚ª‰E‚ğŒü‚¢‚Ä‚¢‚é‚Æ‚«
+        // Player ãŒå³ã‚’å‘ã„ã¦ã„ã‚‹ã¨ã
         if (horizontal > 0)
         {
             isreturn = false;
             this.transform.localScale = new Vector3(Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, this.transform.localScale.z);
         }
-        // Player ‚ª¶‚ğŒü‚¢‚Ä‚¢‚é‚Æ‚«
+        // Player ãŒå·¦ã‚’å‘ã„ã¦ã„ã‚‹ã¨ã
         else if (horizontal < 0)
         {
             isreturn = true;

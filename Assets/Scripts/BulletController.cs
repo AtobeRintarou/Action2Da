@@ -1,37 +1,37 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Bullet ‚Ì“®‚«‚ÉŠÖ‚·‚éƒXƒNƒŠƒvƒg
-/// Bullet ‚É‚µ‚½‚¢ Prefab ‚ÉƒAƒ^ƒbƒ`‚µ‚Äg‚¤
+/// Bullet ã®å‹•ãã«é–¢ã™ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+/// Bullet ã«ã—ãŸã„ Prefab ã«ã‚¢ã‚¿ãƒƒãƒã—ã¦ä½¿ã†
 /// </summary>
 public class BulletController : MonoBehaviour
 {
-    [Header("”­Ë‚·‚é’e‚ÌƒXƒs[ƒh")]
+    [Header("ç™ºå°„ã™ã‚‹å¼¾ã®ã‚¹ãƒ”ãƒ¼ãƒ‰")]
     [SerializeField] float _speed = 3f;
-    [Header("”­Ë‚·‚é’e‚Ìƒ‰ƒCƒtƒ^ƒCƒ€")]
+    [Header("ç™ºå°„ã™ã‚‹å¼¾ã®ãƒ©ã‚¤ãƒ•ã‚¿ã‚¤ãƒ ")]
     [SerializeField] float _lifeTime = 5f;
 
     public PlayerController _playerControllerScript = null;
     void Start()
     {
-        // Player ‚Æ‚¢‚¤–¼‘O‚Ì Object ‚©‚ç PlayerController ƒXƒNƒŠƒvƒg‚Ìî•ñ‚ğæ“¾
+        // Player ã¨ã„ã†åå‰ã® Object ã‹ã‚‰ PlayerController ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®æƒ…å ±ã‚’å–å¾—
         _playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        // Player ‚ª¶‚ğŒü‚¢‚Ä‚¢‚é‚Æ‚«
+        // Player ãŒå·¦ã‚’å‘ã„ã¦ã„ã‚‹ã¨ã
         if (_playerControllerScript.isreturn)
         {
             rb.velocity = Vector2.right * _speed * -1;
-            Debug.Log("¶‚¾‚æ");
+            Debug.Log("å·¦ã ã‚ˆ");
         }
-        // Player ‚ª‰E‚ğŒü‚¢‚Ä‚¢‚é‚Æ‚«
+        // Player ãŒå³ã‚’å‘ã„ã¦ã„ã‚‹ã¨ã
         else
         {
             rb.velocity = Vector2.right * _speed;
-            Debug.Log("‰E‚¾‚æ");
+            Debug.Log("å³ã ã‚ˆ");
         }
-        // ¶‘¶ŠÔ‚ªŒo‰ß‚µ‚½‚ç©•ª©g‚ğ”j‰ó‚·‚é
+        // ç”Ÿå­˜æ™‚é–“ãŒçµŒéã—ãŸã‚‰è‡ªåˆ†è‡ªèº«ã‚’ç ´å£Šã™ã‚‹
         Destroy(this.gameObject, _lifeTime);
     }
 }
