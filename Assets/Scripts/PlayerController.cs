@@ -16,8 +16,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _speed = 25.0f;
     [Header("プレイヤーのジャンプ力")]
     [SerializeField] private float _force = 70.0f;
+    [Header("近接攻撃の当たり判定用オブジェクト")]
+    public GameObject _attack;
+    [Header("遠距離攻撃のクールタイム")]
+    [SerializeField] float _longLangeInterval = 1f;
+    float _longLangeTimer;
+    [Header("近接攻撃のクールタイム")]
+    [SerializeField] float _meleeInterval = 1f;
+    float _meleeTimer;
+    [SerializeField] bool _generateOnStart = true;
 
-    public float Speed => _speed; // speed の制御
+    public float Speed => _speed;
     // プレイヤーの Rigidbody
     Rigidbody2D m_rb = default;
     // 二段ジャンプの真偽
@@ -37,10 +46,18 @@ public class PlayerController : MonoBehaviour
         m_rb = GetComponent<Rigidbody2D>();
         // 初期位置を覚えておく
         m_initialPosition = this.transform.position;
+
+        if (_generateOnStart)
+        {
+            _longLangeTimer = _longLangeInterval;
+            _meleeTimer = _meleeInterval;
+        }
     }
 
     void Update()
     {
+        _longLangeTimer += Time.deltaTime;
+        _meleeTimer += Time.deltaTime;
         // 入力を受け取る
         m_h = Input.GetAxisRaw("Horizontal");
         // スペースキーでジャンプ
@@ -63,25 +80,53 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("跳べない豚");
             }
         }
+
         // 下に行きすぎたら初期位置に戻す
         if (this.transform.position.y < -10f)
         {
             this.transform.position = m_initialPosition;
             Debug.Log("判決、地獄行き");
         }
-        // 左クリックをしたら
-        if (Input.GetButtonDown("Fire1"))
+
+        if (_longLangeTimer > _longLangeInterval)
         {
-            // 弾を発射する処理
-            GameObject bullet = Instantiate(_bulletPrefab);
-            bullet.transform.position = _muzzle.position;
-            Debug.Log("「ば～ん」");
+            // 右クリックをしたら
+            if (Input.GetButtonDown("Fire2"))
+            {
+                // 弾を発射する処理
+                GameObject bullet = Instantiate(_bulletPrefab);
+                bullet.transform.position = _muzzle.position;
+                Debug.Log("「ば～ん」");
+                _longLangeTimer = 0;
+            }
         }
+
+        if (_meleeTimer > _meleeInterval)
+        {
+            // 左クリックをしたら
+            if (Input.GetButtonDown("Fire1"))
+            {
+                // 近接攻撃をする処理
+                _attack.SetActive(true);
+                Invoke(nameof(DelayMethod), 0.8f);
+                Debug.Log("「ズバッ！」");
+                if (_attack.activeSelf == false)
+                {
+                    CancelInvoke();
+                }
+                _meleeTimer = 0;
+            }
+        }
+
         // 設定に応じて左右を反転させる
         if (_flipX)
         {
             FlipX(m_h);
         }
+    }
+    void DelayMethod()
+    {
+        _attack.SetActive(false);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
