@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 {
     [Header("発射する弾のプレハブ")]
     [SerializeField] GameObject _bulletPrefab = default;
+    [Header("溜め攻撃時に発射する弾のプレハブ")]
+    [SerializeField] GameObject _chargeBulletPrefab = default;
     [Header("マズルのプレハブ")]
     [SerializeField] Transform _muzzle = default;
     [Header("プレイヤーの移動速度")]
@@ -18,13 +20,25 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _force = 70.0f;
     [Header("近接攻撃の当たり判定用オブジェクト")]
     public GameObject _attack;
+    [Header("近接溜攻撃の当たり判定用オブジェクト")]
+    public GameObject _chargeAttack;
     [Header("遠距離攻撃のクールタイム")]
     [SerializeField] float _longLangeInterval = 1f;
     float _longLangeTimer;
     [Header("近接攻撃のクールタイム")]
     [SerializeField] float _meleeInterval = 1f;
     float _meleeTimer;
-    [SerializeField] bool _generateOnStart = true;
+
+    [Header("近接攻撃の溜め時間")]
+    public float _meleeChargeDuretion;
+    float _meleeChargeTime = 0;
+
+    [Header("遠距離攻撃の溜め時間")]
+    public float _longLangeChargeDuretion;
+    float _longLangeChargeTime = 0;
+
+    [SerializeField] bool isGenerateOnStart = true;
+    [SerializeField] public bool isReturn = false;
 
     public float Speed => _speed;
     // プレイヤーの Rigidbody
@@ -47,7 +61,7 @@ public class PlayerController : MonoBehaviour
         // 初期位置を覚えておく
         m_initialPosition = this.transform.position;
 
-        if (_generateOnStart)
+        if (isGenerateOnStart)
         {
             _longLangeTimer = _longLangeInterval;
             _meleeTimer = _meleeInterval;
@@ -96,8 +110,25 @@ public class PlayerController : MonoBehaviour
                 // 弾を発射する処理
                 GameObject bullet = Instantiate(_bulletPrefab);
                 bullet.transform.position = _muzzle.position;
-                Debug.Log("「ば～ん」");
+                Debug.Log("「バーン」");
                 _longLangeTimer = 0;
+            }
+        }
+
+        if (Input.GetButton("Fire2"))
+        {
+            _longLangeChargeTime += Time.deltaTime;
+        }
+
+        if (_longLangeChargeTime >= _longLangeChargeDuretion)
+        {
+            Debug.Log("遠距離溜まったよ");
+            if (Input.GetButtonUp("Fire2"))
+            {
+                GameObject chargeBullet = Instantiate(_chargeBulletPrefab);
+                chargeBullet.transform.position = _muzzle.position;
+                Debug.Log("「ドカーン！！」");
+                _longLangeChargeTime = 0;
             }
         }
 
@@ -109,12 +140,33 @@ public class PlayerController : MonoBehaviour
                 // 近接攻撃をする処理
                 _attack.SetActive(true);
                 Invoke(nameof(DelayMethod), 0.8f);
-                Debug.Log("「ズバッ！」");
+                Debug.Log("「ズバッ」");
                 if (_attack.activeSelf == false)
                 {
                     CancelInvoke();
                 }
                 _meleeTimer = 0;
+            }
+        }
+
+        if (Input.GetButton("Fire1"))
+        {
+            _meleeChargeTime += Time.deltaTime;
+        }
+
+        if (_meleeChargeTime >= _meleeChargeDuretion)
+        {
+            Debug.Log("近接溜まったよ");
+            if (Input.GetButtonUp("Fire1"))
+            {
+                _chargeAttack.SetActive(true);
+                Invoke(nameof(ChargeDelayMethod), 1.5f);
+                Debug.Log("「ズッバーン！！」");
+                if (_chargeAttack.activeSelf == false)
+                {
+                    CancelInvoke();
+                }
+                _meleeChargeTime = 0;
             }
         }
 
@@ -124,10 +176,16 @@ public class PlayerController : MonoBehaviour
             FlipX(m_h);
         }
     }
+
     void DelayMethod()
     {
         _attack.SetActive(false);
     }
+    void ChargeDelayMethod()
+    {
+        _chargeAttack.SetActive(false);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Ground に触れているとき
@@ -143,7 +201,7 @@ public class PlayerController : MonoBehaviour
         m_rb.AddForce(Vector2.right * m_h * _speed, ForceMode2D.Force);
     }
 
-    // Player の向きに関するブロック
+    // Player の向きに関するメソッド
     void FlipX(float horizontal)
     {
         _scaleX = this.transform.localScale.x;
@@ -152,15 +210,15 @@ public class PlayerController : MonoBehaviour
         // Player が右を向いているとき
         if (horizontal > 0)
         {
-            isreturn = false;
+            isReturn = false;
             this.transform.localScale = new Vector3(Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, this.transform.localScale.z);
         }
         // Player が左を向いているとき
         else if (horizontal < 0)
         {
-            isreturn = true;
+            isReturn = true;
             this.transform.localScale = new Vector3(-1 * Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, this.transform.localScale.z);
         }
     }
-    public bool isreturn = false;
+    
 }

@@ -16,8 +16,9 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Attack")
+        if (collision.gameObject.tag == "Attack" || collision.gameObject.tag == "Bullet")
         {
+            Debug.Log("‚®‚Í‚Á‚Á");
             Destroy(this.gameObject);
         }
     }

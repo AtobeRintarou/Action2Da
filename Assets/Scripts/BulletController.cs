@@ -20,7 +20,7 @@ public class BulletController : MonoBehaviour
         _playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         // Player が左を向いているとき
-        if (_playerControllerScript.isreturn)
+        if (_playerControllerScript.isReturn)
         {
             rb.velocity = Vector2.right * _speed * -1;
             Debug.Log("左だよ");
