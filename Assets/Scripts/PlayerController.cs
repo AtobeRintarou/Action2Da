@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Player の動きに関するスクリプト
@@ -31,11 +32,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("近接攻撃の溜め時間")]
     public float _meleeChargeDuretion;
-    float _meleeChargeTime = 0;
+    float _meleeChargeTime = 1.5f;
 
     [Header("遠距離攻撃の溜め時間")]
     public float _longLangeChargeDuretion;
-    float _longLangeChargeTime = 0;
+    float _longLangeChargeTime = 1.5f;
 
     [Header("プレイヤーの体力")]
     [SerializeField] int _hp = 10;
@@ -58,15 +59,13 @@ public class PlayerController : MonoBehaviour
     float m_h;
     float _scaleX;
 
-    Vector3 _pos;
-    Transform _posi;
-
     public int HpMax { get; private set; }
     public int HP { get { return _hp; } set { _hp = value; } }
     public bool IsMuteki { get; set; } = false;
 
     private void Start()
     {
+        HpMax = _hp;
         m_rb = GetComponent<Rigidbody2D>();
         // 初期位置を覚えておく
         m_initialPosition = this.transform.position;
@@ -76,8 +75,6 @@ public class PlayerController : MonoBehaviour
             _longLangeTimer = _longLangeInterval;
             _meleeTimer = _meleeInterval;
         }
-
-        HpMax = _hp;
     }
 
     void Update()
@@ -131,6 +128,10 @@ public class PlayerController : MonoBehaviour
         {
             _longLangeChargeTime += Time.deltaTime;
         }
+        else if (_longLangeChargeTime < _longLangeChargeDuretion)
+        {
+            _longLangeChargeTime = 0;
+        }
 
         if (_longLangeChargeTime >= _longLangeChargeDuretion)
         {
@@ -149,13 +150,16 @@ public class PlayerController : MonoBehaviour
             // 左クリックをしたら
             if (Input.GetButtonDown("Fire1"))
             {
-                // 近接攻撃をする処理
-                _attack.SetActive(true);
-                Invoke(nameof(DelayMethod), 0.8f);
-                Debug.Log("「ズバッ」");
-                if (_attack.activeSelf == false)
+                if (_chargeAttack.activeSelf == false)
                 {
-                    CancelInvoke();
+                    // 近接攻撃をする処理
+                    _attack.SetActive(true);
+                    Invoke(nameof(DelayMethod), 0.8f);
+                    Debug.Log("「ズバッ」");
+                    if (_attack.activeSelf == false)
+                    {
+                        CancelInvoke();
+                    }
                 }
                 _meleeTimer = 0;
             }
@@ -164,6 +168,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("Fire1"))
         {
             _meleeChargeTime += Time.deltaTime;
+        }
+        else if (_meleeChargeTime < _meleeChargeDuretion)
+        {
+            _meleeChargeTime = 0;
         }
 
         if (_meleeChargeTime >= _meleeChargeDuretion)
