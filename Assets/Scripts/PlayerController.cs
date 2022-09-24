@@ -58,6 +58,9 @@ public class PlayerController : MonoBehaviour
     float m_h;
     float _scaleX;
 
+    Vector3 _pos;
+    Transform _posi;
+
     public int HpMax { get; private set; }
     public int HP { get { return _hp; } set { _hp = value; } }
     public bool IsMuteki { get; set; } = false;
@@ -218,6 +221,14 @@ public class PlayerController : MonoBehaviour
         {
             _hp--;
             Debug.Log("いてっ");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "CheckPoint")
+        {
+            m_initialPosition = collision.gameObject.transform.position;
         }
     }
     void FixedUpdate()
