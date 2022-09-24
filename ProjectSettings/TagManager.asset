@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - ChargeAttack
   - ChargeBullet
+  - Enemy
   layers:
   - Default
   - TransparentFX

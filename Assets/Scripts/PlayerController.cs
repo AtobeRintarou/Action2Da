@@ -37,6 +37,9 @@ public class PlayerController : MonoBehaviour
     public float _longLangeChargeDuretion;
     float _longLangeChargeTime = 0;
 
+    [Header("プレイヤーの体力")]
+    [SerializeField] int _hp = 10;
+
     [SerializeField] bool isGenerateOnStart = true;
     [SerializeField] public bool isReturn = false;
 
@@ -55,6 +58,10 @@ public class PlayerController : MonoBehaviour
     float m_h;
     float _scaleX;
 
+    public int HpMax { get; private set; }
+    public int HP { get { return _hp; } set { _hp = value; } }
+    public bool IsMuteki { get; set; } = false;
+
     private void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();
@@ -66,6 +73,8 @@ public class PlayerController : MonoBehaviour
             _longLangeTimer = _longLangeInterval;
             _meleeTimer = _meleeInterval;
         }
+
+        HpMax = _hp;
     }
 
     void Update()
@@ -175,6 +184,11 @@ public class PlayerController : MonoBehaviour
         {
             FlipX(m_h);
         }
+
+        if (_hp < 1)
+        {
+
+        }
     }
 
     void DelayMethod()
@@ -186,7 +200,7 @@ public class PlayerController : MonoBehaviour
         _chargeAttack.SetActive(false);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         // Ground に触れているとき
         if (collision.gameObject.tag == "Ground")
@@ -194,8 +208,19 @@ public class PlayerController : MonoBehaviour
             _isGround = true;
             Debug.Log("地面にこんにちは");
         }
+
+        if (IsMuteki)
+        {
+            return;
+        }
+
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
+        {
+            _hp--;
+            Debug.Log("いてっ");
+        }
     }
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         // 力を加えるのは FixedUpdate で行う
         m_rb.AddForce(Vector2.right * m_h * _speed, ForceMode2D.Force);
