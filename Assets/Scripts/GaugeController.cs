@@ -31,11 +31,11 @@ public class GaugeController : MonoBehaviour
         UpdateHp(_player.HP);
         ChangeValue();
         //slider.value = currentHp / _maxHp;
-        if (_slider.value <= 1f && _slider.value > 0.5f)
+        if (_slider.value <= 1f && _slider.value > 0.53f)
         {
             _image.color = Color.green;
         }
-        else if (_slider.value <= 0.5f && _slider.value > 0.25f)
+        else if (_slider.value <= 0.53f && _slider.value > 0.25f)
         {
             _image.color = Color.yellow;
         }
