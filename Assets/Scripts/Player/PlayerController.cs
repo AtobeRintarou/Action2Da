@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     [Header("プレイヤーの移動速度")]
     [SerializeField] float _speed = 25.0f;
     [Header("プレイヤーのジャンプ力")]
-    [SerializeField] private float _force = 70.0f;
+    [SerializeField] float _force = 70.0f;
     [Header("近接攻撃の当たり判定用オブジェクト")]
     public GameObject _attack;
     [Header("近接溜攻撃の当たり判定用オブジェクト")]
