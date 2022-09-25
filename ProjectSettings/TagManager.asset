@@ -11,6 +11,7 @@ TagManager:
   - ChargeBullet
   - Enemy
   - CheckPoint
+  - Skill
   layers:
   - Default
   - TransparentFX

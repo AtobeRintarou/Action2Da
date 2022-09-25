@@ -41,6 +41,13 @@ public class PlayerController : MonoBehaviour
     [Header("プレイヤーの体力")]
     [SerializeField] int _hp = 10;
 
+    [Header("必殺に必要なKILL数")]
+    [SerializeField] int _killCount = 10;
+    int _kill;
+
+    [Header("必殺技の当たり判定用オブジェクト")]
+    public GameObject _skill;
+
     [SerializeField] bool isGenerateOnStart = true;
     [SerializeField] public bool isReturn = false;
 
@@ -62,10 +69,13 @@ public class PlayerController : MonoBehaviour
     public int HpMax { get; private set; }
     public int HP { get { return _hp; } set { _hp = value; } }
     public bool IsMuteki { get; set; } = false;
+    public int Kill { get; set; }
 
     private void Start()
     {
         HpMax = _hp;
+        Kill = _kill;
+
         m_rb = GetComponent<Rigidbody2D>();
         // 初期位置を覚えておく
         m_initialPosition = this.transform.position;
@@ -190,6 +200,17 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (Kill >= _killCount)
+        {
+            if (Input.GetButtonDown("E"))
+            {
+                GameObject skill = Instantiate(_skill);
+                skill.transform.position = _muzzle.position;
+                Debug.Log("「お前はもう死んでいる」");
+                Kill = 0;
+            }
+        }
+
         // 設定に応じて左右を反転させる
         if (_flipX)
         {
@@ -210,6 +231,7 @@ public class PlayerController : MonoBehaviour
     {
         _chargeAttack.SetActive(false);
     }
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {
