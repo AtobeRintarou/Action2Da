@@ -8,4 +8,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 51bccc769b9b0b844add89eb75ec5830
+  - enabled: 1
+    path: Assets/Scenes/InfinitBattle.unity
+    guid: 3dc416a3a7092ff4d949f2d323892e03
+  - enabled: 1
+    path: Assets/Scenes/InfinitRun.unity
+    guid: eb7d9d69cf823fc498d6c9fc746a987a
+  - enabled: 1
+    path: Assets/Scenes/Infinity.unity
+    guid: 151b28772f4dcd9488399be95bc3929a
+  - enabled: 1
+    path: Assets/Scenes/MainTown.unity
+    guid: 1223ff6c6e8a34644b712f4c95d8d54e
+  - enabled: 1
+    path: Assets/Scenes/Result.unity
+    guid: c84cb37590d0ce14292d77cf2ead83de
+  - enabled: 1
+    path: Assets/Scenes/Stage1.unity
+    guid: f827dbc37d2b5c54099458a95bb121c3
+  - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: 4862d4a025732df44910e126bfffc3bb
   m_configObjects: {}

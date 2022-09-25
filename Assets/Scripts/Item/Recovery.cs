@@ -28,6 +28,7 @@ public class Recovery : ItemBase
 
                 if (_player.HP == _player.HpMax)
                 {
+                    Destroy(gameObject);
                     return;
                 }
                 else
