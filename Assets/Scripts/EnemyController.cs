@@ -8,8 +8,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField] int _hp = 10;
     private PlayerController _player;
 
+    public int Hp { get { return _hp; } set { _hp = value; } }
     void Start()
     {
+        Hp = _hp;
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
