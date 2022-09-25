@@ -4,33 +4,53 @@ using UnityEngine;
 
 public class CounterController : MonoBehaviour
 {
+    [Header("カウンターのクールタイム")]
+    [SerializeField] float _counterInterval = 3f;
+    float _counterTimer;
+
+    [SerializeField] bool isGenerateOnStart = true;
+
     bool _good = false;
     bool _perfect = false;
     bool _out = false;
 
+    private PlayerController _player;
+    private EnemyController _enemy;
     void Start()
     {
-        
+        if (isGenerateOnStart)
+        {
+            _counterTimer = _counterInterval;
+        }
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        _enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyController>();
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(2))
+        _counterTimer += Time.deltaTime;
+        if (_counterTimer > _counterInterval)
         {
-            if (_good == true)
+            if (Input.GetMouseButtonDown(2))
             {
-                Debug.Log("good");
-                Destroy(this.gameObject);
-            }
-            else if (_perfect == true)
-            {
-                Debug.Log("perfect");
-                Destroy(this.gameObject);
-            }
-            else if (_out == true)
-            {
-                Debug.Log("out");
-                Destroy(this.gameObject);
+                if (_good == true)
+                {
+                    _enemy.Hp -= 2;
+                    Debug.Log("good");
+                    Destroy(this.gameObject);
+                }
+                else if (_perfect == true)
+                {
+                    _enemy.Hp -= 4;
+                    Debug.Log("perfect");
+                    Destroy(this.gameObject);
+                }
+                else if (_out == true)
+                {
+                    _player.HP--;
+                    Debug.Log("out");
+                    Destroy(this.gameObject);
+                }
             }
         }
     }
