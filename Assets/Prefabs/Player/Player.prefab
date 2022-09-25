@@ -366,7 +366,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 5
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 5
   m_Material: {fileID: 0}
@@ -405,8 +405,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 2548047275772627293, guid: bca4d3150d278ef4096be34899e5747f, type: 3}
   _chargeBulletPrefab: {fileID: 5629789672624009967, guid: 78c54091f09559547b021e400c71140f, type: 3}
   _muzzle: {fileID: 3717815314787095449}
-  _speed: 70
-  _force: 25
+  _speed: 50
+  _force: 20
   _attack: {fileID: 1588040592285380796}
   _chargeAttack: {fileID: 1588040593314344118}
   _longLangeInterval: 0.8
