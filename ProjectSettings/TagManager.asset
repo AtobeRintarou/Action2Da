@@ -12,6 +12,10 @@ TagManager:
   - Enemy
   - CheckPoint
   - Skill
+  - Perfect
+  - Good
+  - Out
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
