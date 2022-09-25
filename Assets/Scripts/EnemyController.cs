@@ -6,18 +6,18 @@ public class EnemyController : MonoBehaviour
 {
     [Header("Enemy‚Ì‘Ì—Í")]
     [SerializeField] int _hp = 10;
+    private PlayerController _player;
 
-    public int EnemyHpMax { get; private set; }
-    public int EnemyHp { get { return _hp; } set { _hp = value; } }
     void Start()
     {
-        EnemyHpMax = _hp;
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     void Update()
     {
         if (_hp < 1)
         {
+            _player.Kill++;
             Destroy(gameObject);
         }
     }
@@ -33,6 +33,11 @@ public class EnemyController : MonoBehaviour
         {
             _hp -= 3;
             Debug.Log("‚°‚Ú‚Î‚Ñ‚¡‚¡‚¡");
+        }
+        else if (collision.gameObject.tag == "Skill")
+        {
+            _hp -= 6;
+            Debug.Log("‚ ‚Á");
         }
     }
 }
