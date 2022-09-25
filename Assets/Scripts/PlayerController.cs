@@ -230,6 +230,14 @@ public class PlayerController : MonoBehaviour
             _hp--;
             Debug.Log("いてっ");
         }
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (collision.gameObject.tag == "Wall")
+            {
+                m_rb.AddForce(Vector2.up * _force, ForceMode2D.Impulse);
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
