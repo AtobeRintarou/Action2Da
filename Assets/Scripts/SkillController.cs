@@ -8,7 +8,7 @@ public class SkillController : MonoBehaviour
     [Header("スピード")]
     [SerializeField] float _speed = 3f;
     [Header("ライフタイム")]
-    [SerializeField] float _lifeTime = 5f;
+    [SerializeField] float _lifeTime = 2f;
 
     public PlayerController _playerControllerScript = null;
     void Start()

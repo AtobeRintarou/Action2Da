@@ -24,12 +24,12 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Attack" || collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Attack")
         {
             _hp--;
             Debug.Log("‚®‚Í‚Á‚Á");
         }
-        else if (collision.gameObject.tag == "ChargeAttack" || collision.gameObject.tag == "ChargeBullet")
+        else if (collision.gameObject.tag == "ChargeAttack")
         {
             _hp -= 3;
             Debug.Log("‚°‚Ú‚Î‚Ñ‚¡‚¡‚¡");
@@ -38,6 +38,19 @@ public class EnemyController : MonoBehaviour
         {
             _hp -= 6;
             Debug.Log("‚ ‚Á");
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            _hp--;
+            Debug.Log("‚®‚Í‚Á‚Á");
+        }
+        else if (collision.gameObject.tag == "ChargeBullet")
+        {
+            _hp -= 3;
+            Debug.Log("‚°‚Ú‚Î‚Ñ‚¡‚¡‚¡");
         }
     }
 }

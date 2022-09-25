@@ -34,4 +34,11 @@ public class BulletController : MonoBehaviour
         // 生存時間が経過したら自分自身を破壊する
         Destroy(this.gameObject, _lifeTime);
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
