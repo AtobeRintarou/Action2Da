@@ -64,6 +64,8 @@ public class PlayerController : MonoBehaviour
     float m_h;
     float _scaleX;
 
+    Animator _animator;
+
     public int HpMax { get; private set; }
     public int HP { get { return _hp; } set { _hp = value; } }
     public bool IsMuteki { get; set; } = false;
@@ -74,6 +76,7 @@ public class PlayerController : MonoBehaviour
         HpMax = _hp;
         Kill = _kill;
 
+        _animator = GetComponent<Animator>();
         m_rb = GetComponent<Rigidbody2D>();
         // 初期位置を覚えておく
         m_initialPosition = this.transform.position;
@@ -129,6 +132,7 @@ public class PlayerController : MonoBehaviour
             // 右クリックをしたら
             if (Input.GetButtonDown("Fire2"))
             {
+                _animator.SetTrigger("isSkill");
                 // 弾を発射する処理
                 GameObject bullet = Instantiate(_bulletPrefab);
                 bullet.transform.position = _muzzle.position;
@@ -151,6 +155,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("遠距離溜まったよ");
             if (Input.GetButtonUp("Fire2"))
             {
+                _animator.SetTrigger("isSkill");
                 GameObject chargeBullet = Instantiate(_chargeBulletPrefab);
                 chargeBullet.transform.position = _muzzle.position;
                 Debug.Log("「ドカーン！！」");
@@ -163,6 +168,7 @@ public class PlayerController : MonoBehaviour
             // 左クリックをしたら
             if (Input.GetButtonDown("Fire1"))
             {
+                _animator.SetTrigger("isAtk");
                 if (_chargeAttack.activeSelf == false)
                 {
                     // 近接攻撃をする処理
@@ -192,6 +198,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("近接溜まったよ");
             if (Input.GetButtonUp("Fire1"))
             {
+                _animator.SetTrigger("isRedAtk");
                 _chargeAttack.SetActive(true);
                 Invoke(nameof(ChargeDelayMethod), 1.5f);
                 Debug.Log("「ズッバーン！！」");
@@ -207,6 +214,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetButtonDown("E"))
             {
+                _animator.SetTrigger("isStrike");
                 GameObject skill = Instantiate(_skill);
                 skill.transform.position = _muzzle.position;
                 Debug.Log("「お前はもう死んでいる」");
@@ -238,6 +246,11 @@ public class PlayerController : MonoBehaviour
     {
         _chargeAttack.SetActive(false);
     }
+    void CangeColor()
+    {
+        GetComponent<Renderer>().material.color = Color.white;
+        CancelInvoke();
+    }
 
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -256,6 +269,8 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet" || collision.gameObject.tag == "Enemy6")
         {
+            GetComponent<Renderer>().material.color = Color.red;
+            Invoke(nameof(CangeColor), 0.2f);
             _hp--;
             Debug.Log("いてっ");
         }
@@ -301,5 +316,15 @@ public class PlayerController : MonoBehaviour
             this.transform.localScale = new Vector3(-1 * Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, this.transform.localScale.z);
         }
     }
-    
+
+    private void LateUpdate()
+    {
+        // アニメーションを制御する
+        if (_animator)
+        {
+            _animator.SetFloat("SpeedX", Mathf.Abs(m_rb.velocity.x));
+            _animator.SetFloat("SpeedY", m_rb.velocity.y);
+            _animator.SetBool("isGround", _isGround);
+        }
+    }
 }
