@@ -21,10 +21,13 @@ public class SymplePlayer : MonoBehaviour
     float m_h;
     float _scaleX;
 
+    Animator _anim = default;
+
     public bool isReturn = false;
 
     void Start()
     {
+        _anim = GetComponent<Animator>();
         m_rb = GetComponent<Rigidbody2D>();
     }
 
@@ -117,6 +120,16 @@ public class SymplePlayer : MonoBehaviour
             {
                 m_rb.AddForce(Vector2.up * _force, ForceMode2D.Impulse);
             }
+        }
+    }
+    private void LateUpdate()
+    {
+        // アニメーションを制御する
+        if (_anim)
+        {
+            _anim.SetFloat("SpeedX", Mathf.Abs(m_rb.velocity.x));
+            _anim.SetFloat("SpeedY", m_rb.velocity.y);
+            _anim.SetBool("isGround", _isGround);
         }
     }
 }
