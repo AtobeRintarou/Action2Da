@@ -6274,7 +6274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37e51e4f70d8474a94ef91ad8538f84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_sceneNameToBeLoaded: MainTown
+  m_sceneNameToBeLoaded: GameOver
   m_fadePanel: {fileID: 562925169}
   m_fadeSpeed: 2
 --- !u!114 &2123697285
