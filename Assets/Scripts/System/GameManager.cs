@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     private static float _score;
     public float ResultTime { get => _resultTime; private set => _resultTime = value; }
     public static GameManager Instance { get => _manager; private set => _manager = value; }
-    public int Score { get; set; }
+    public static int Score { get; set; }
     void Start()
     {
         StartGame();

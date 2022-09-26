@@ -8,6 +8,6 @@ public class TimeController : MonoBehaviour
     void Update()
     {
         _timer += Time.deltaTime;
-        _text.text = "ƒ^ƒCƒ€:" + _timer.ToString("f1");
+        _text.text = "ŽžŠÔ:" + _timer.ToString("f1") + "•b";
     }
 }

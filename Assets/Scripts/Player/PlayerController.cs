@@ -256,7 +256,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet" || collision.gameObject.tag == "Enemy6")
         {
             _hp--;
             Debug.Log("いてっ");
