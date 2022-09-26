@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7510333083878162298}
   - component: {fileID: 4585035910847165852}
   - component: {fileID: 7381919883932859654}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EnemyBullet
   m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
@@ -151,3 +151,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e7db789d3f5dc498b943a19732d59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _counterInterval: 1
+  isGenerateOnStart: 1

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4256346782969614369}
   - component: {fileID: 4256346782969614370}
   - component: {fileID: 4256346782969614381}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 5
+  _point: 150
 --- !u!114 &4256346782969614381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,3 +164,7 @@ MonoBehaviour:
   _speed: 2
   _force: 30
   _fireInterval: 1
+  _lineForWall: {x: 1, y: 0}
+  _wallLayer:
+    serializedVersion: 2
+    m_Bits: 16
