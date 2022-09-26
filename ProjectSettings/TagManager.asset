@@ -16,6 +16,7 @@ TagManager:
   - Good
   - Out
   - EnemyBullet
+  - Enemy6
   layers:
   - Default
   - TransparentFX
