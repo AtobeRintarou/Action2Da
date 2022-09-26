@@ -9,23 +9,21 @@ public class EnemyController : MonoBehaviour
     [Header("“¾“_")]
     [SerializeField] int _point = 100;
     private PlayerController _player;
-    private GameManager _gm;
 
     public int Hp { get { return _hp; } set { _hp = value; } }
     void Start()
     {
         Hp = _hp;
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        _gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     void Update()
     {
         if (_hp < 1)
         {
-            _gm.Score += _point;
+            GameManager.Score += _point;
             _player.Kill++;
-            Destroy(gameObject);
+            Destroy(gameObject,0.1f);
         }
     }
 

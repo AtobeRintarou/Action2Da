@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/InfinitRun.unity
     guid: eb7d9d69cf823fc498d6c9fc746a987a
   - enabled: 1
+    path: Assets/Scenes/ResultRun.unity
+    guid: 7120ecc38d6b36141ba54d6b2b2d855e
+  - enabled: 1
     path: Assets/Scenes/Infinity.unity
     guid: 151b28772f4dcd9488399be95bc3929a
   - enabled: 1

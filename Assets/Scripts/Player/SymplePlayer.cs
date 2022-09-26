@@ -53,6 +53,23 @@ public class SymplePlayer : MonoBehaviour
             }
         }
 
+        // 下に行きすぎたら初期位置に戻す
+        if (this.transform.position.y < -10f)
+        {
+            GameManager gm = GameObject.FindObjectOfType<GameManager>();
+            if (gm)
+            {
+                gm.PlayerDead();
+            }
+
+            TimeController tc = GameObject.FindObjectOfType<TimeController>();
+            if (tc)
+            {
+                tc.TimeStop();
+            }
+            Debug.Log("判決、地獄行き");
+        }
+
         if (_flipX)
         {
             FlipX(m_h);

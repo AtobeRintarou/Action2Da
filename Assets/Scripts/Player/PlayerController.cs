@@ -9,25 +9,25 @@ using UnityEngine.UI;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-    [Header("発射する弾のプレハブ")]
-    [SerializeField] GameObject _bulletPrefab = default;
-    [Header("溜め攻撃時に発射する弾のプレハブ")]
-    [SerializeField] GameObject _chargeBulletPrefab = default;
-    [Header("マズルのプレハブ")]
-    [SerializeField] Transform _muzzle = default;
-    [Header("プレイヤーの移動速度")]
-    [SerializeField] float _speed = 25.0f;
-    [Header("プレイヤーのジャンプ力")]
-    [SerializeField] float _force = 70.0f;
+    [Header("発射する弾のプレハブ"),SerializeField]
+    GameObject _bulletPrefab = default;
+    [Header("溜め攻撃時に発射する弾のプレハブ"),SerializeField]
+    GameObject _chargeBulletPrefab = default;
+    [Header("マズルのプレハブ"),SerializeField]
+    Transform _muzzle = default;
+    [Header("プレイヤーの移動速度"),SerializeField]
+    float _speed = 25.0f;
+    [Header("プレイヤーのジャンプ力"),SerializeField]
+    float _force = 70.0f;
     [Header("近接攻撃の当たり判定用オブジェクト")]
     public GameObject _attack;
     [Header("近接溜攻撃の当たり判定用オブジェクト")]
     public GameObject _chargeAttack;
-    [Header("遠距離攻撃のクールタイム")]
-    [SerializeField] float _longLangeInterval = 1f;
+    [Header("遠距離攻撃のクールタイム"),SerializeField]
+    float _longLangeInterval = 1f;
     float _longLangeTimer;
-    [Header("近接攻撃のクールタイム")]
-    [SerializeField] float _meleeInterval = 1f;
+    [Header("近接攻撃のクールタイム"),SerializeField]
+    float _meleeInterval = 1f;
     float _meleeTimer;
 
     [Header("近接攻撃の溜め時間")]
@@ -38,11 +38,9 @@ public class PlayerController : MonoBehaviour
     public float _longLangeChargeDuretion;
     float _longLangeChargeTime = 1.5f;
 
-    [Header("プレイヤーの体力")]
-    [SerializeField] int _hp = 10;
+    [Header("プレイヤーの体力"),SerializeField] int _hp = 10;
 
-    [Header("必殺に必要なKILL数")]
-    [SerializeField] int _killCount = 10;
+    [Header("必殺に必要なKILL数"),SerializeField] int _killCount = 10;
     int _kill;
 
     [Header("必殺技の当たり判定用オブジェクト")]
@@ -205,7 +203,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Kill >= _killCount)
+        if (Kill > _killCount)
         {
             if (Input.GetButtonDown("E"))
             {
@@ -256,7 +254,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet" || collision.gameObject.tag == "Enemy6")
         {
             _hp--;
             Debug.Log("いてっ");
