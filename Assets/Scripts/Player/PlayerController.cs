@@ -117,6 +117,11 @@ public class PlayerController : MonoBehaviour
         // 下に行きすぎたら初期位置に戻す
         if (this.transform.position.y < -10f)
         {
+            GameManager gm = GameObject.FindObjectOfType<GameManager>();
+            if (gm)
+            {
+                gm.PlayerDead();
+            }
             this.transform.position = m_initialPosition;
             Debug.Log("判決、地獄行き");
         }
@@ -219,7 +224,11 @@ public class PlayerController : MonoBehaviour
 
         if (_hp < 1)
         {
-
+            GameManager gm = GameObject.FindObjectOfType<GameManager>();
+            if (gm)
+            {
+                gm.PlayerDead();
+            }
         }
     }
 

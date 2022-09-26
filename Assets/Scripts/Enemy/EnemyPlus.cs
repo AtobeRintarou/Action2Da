@@ -10,7 +10,7 @@ public class EnemyPlus : MonoBehaviour
     [SerializeField] Transform _transform;
     void Start()
     {
-        _enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyController>();
+        _enemy = GameObject.FindGameObjectWithTag("Enemy6").GetComponent<EnemyController>();
 
     }
 
