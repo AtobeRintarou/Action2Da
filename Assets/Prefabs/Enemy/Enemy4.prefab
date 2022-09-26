@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7814434130563294837}
   - component: {fileID: 7814434130563294794}
   - component: {fileID: 7814434130563294795}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy4
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 10
+  _point: 200
 --- !u!61 &7814434130563294837
 BoxCollider2D:
   m_ObjectHideFlags: 0

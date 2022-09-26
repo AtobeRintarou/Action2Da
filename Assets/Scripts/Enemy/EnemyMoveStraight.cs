@@ -6,22 +6,41 @@ public class EnemyMoveStraight : MonoBehaviour
 {
     [Header("スピード")]
     [SerializeField] float _speed = 3f;
+    /// <summary>壁を検出するための line のオフセット</summary>
+    [SerializeField] Vector2 _lineForWall = Vector2.right;
+    /// <summary>壁のレイヤー（レイヤーはオブジェクトに設定されている）</summary>
+    [SerializeField] LayerMask _wallLayer = 0;
+    /// <summary>移動方向</summary>
+    Vector2 _moveDirection = Vector2.right;
+    Rigidbody2D _rb = default;
 
     void Start()
     {
-
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        // ある程度左に行ったら
-        if (this.transform.position.x < -10f || this.transform.position.y < -10f)
+        MoveWithTurn();
+    }
+
+    void MoveWithTurn()
+    {
+        Vector2 start = this.transform.position;
+        Debug.DrawLine(start, start + _lineForWall);
+        RaycastHit2D hit = Physics2D.Linecast(start, start + _lineForWall, _wallLayer);
+        Vector2 velo = Vector2.zero;    // velo は速度ベクトル
+
+
+        if (hit.collider)
         {
-            // 自分自身を破棄する
-            Destroy(this.gameObject);
+            Debug.Log("Hit");
+            _lineForWall *= -1;
+            _moveDirection *= -1;
         }
 
-        // 一定速度で左に動かす
-        this.transform.Translate(Vector2.left * _speed * Time.deltaTime);
+        velo = _moveDirection.normalized * _speed;
+        velo.y = _rb.velocity.y;
+        _rb.velocity = velo;
     }
 }

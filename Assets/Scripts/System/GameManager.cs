@@ -5,7 +5,6 @@ using UnityEngine.UI;   // UI を操作するために追加している
 
 /// <summary>
 /// ゲーム全体を管理するクラス。
-/// EnemyWaveGenerator と同じ GameObject にアタッチする必要がある。
 /// </summary>
 public class GameManager : MonoBehaviour
 {
@@ -20,8 +19,17 @@ public class GameManager : MonoBehaviour
     /// <summary>ゲームの状態</summary>
     GameState _status = GameState.NonInitialized;
 
+    private static GameManager _manager;
+
+    private float _startTime;
+    private float _resultTime;
+    private static float _score;
+    public float ResultTime { get => _resultTime; private set => _resultTime = value; }
+    public static GameManager Instance { get => _manager; private set => _manager = value; }
+    public int Score { get; set; }
     void Start()
     {
+        StartGame();
         // ゲームオーバーの表示を消す
         if (_gameoverText)
         {
@@ -80,13 +88,20 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void GameOver()
     {
+        ResultTime = Time.time - _startTime;
         Debug.Log("Game over. Load scene.");
         if (_sceneLoader)
         {
             _sceneLoader.LoadScene();
         }
     }
+    public void StartGame()
+    {
+        _startTime = Time.time;
+        Score = 0;
+    }
 }
+
 
 /// <summary>
 /// ゲームの状態を表す列挙型

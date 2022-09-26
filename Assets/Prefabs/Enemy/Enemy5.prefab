@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8371247609336189742}
   - component: {fileID: 8371247609336189743}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EnemyMuzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 8371247610995091189}
   - component: {fileID: 8371247610995091188}
   - component: {fileID: 8371247610995091179}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy5
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 10
+  _point: 100
 --- !u!114 &8371247610995091179
 MonoBehaviour:
   m_ObjectHideFlags: 0

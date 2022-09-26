@@ -17,11 +17,12 @@ TagManager:
   - Out
   - EnemyBullet
   - Enemy6
+  - GameManager
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 

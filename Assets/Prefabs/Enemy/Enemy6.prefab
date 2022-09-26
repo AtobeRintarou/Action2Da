@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7132993171924524074}
   - component: {fileID: 7132993171924524075}
   - component: {fileID: 7132993171924524068}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy6
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 15
+  _point: 200
 --- !u!114 &7132993171924524068
 MonoBehaviour:
   m_ObjectHideFlags: 0
