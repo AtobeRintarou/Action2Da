@@ -7,11 +7,11 @@ public class EnemyMoveStraight : MonoBehaviour
     [Header("スピード")]
     [SerializeField] float _speed = 3f;
     /// <summary>壁を検出するための line のオフセット</summary>
-    [SerializeField] Vector2 _lineForWall = Vector2.right;
+    Vector2 _lineForWall = Vector2.left;
     /// <summary>壁のレイヤー（レイヤーはオブジェクトに設定されている）</summary>
     [SerializeField] LayerMask _wallLayer = 0;
     /// <summary>移動方向</summary>
-    Vector2 _moveDirection = Vector2.right;
+    Vector2 _moveDirection = Vector2.left;
     Rigidbody2D _rb = default;
 
     void Start()

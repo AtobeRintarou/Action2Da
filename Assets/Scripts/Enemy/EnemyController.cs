@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour
         {
             GameManager.Score += _point;
             _player.Kill++;
-            Destroy(gameObject);
+            Destroy(gameObject,0.1f);
         }
     }
 

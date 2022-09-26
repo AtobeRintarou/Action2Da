@@ -11,11 +11,11 @@ public class EnemyMoveWave : MonoBehaviour
     [Header("移動速度")]
     [SerializeField] float m_speedX = 1f;
     /// <summary>壁を検出するための line のオフセット</summary>
-    [SerializeField] Vector2 _lineForWall = Vector2.right;
+    Vector2 _lineForWall = Vector2.left;
     /// <summary>壁のレイヤー（レイヤーはオブジェクトに設定されている）</summary>
     [SerializeField] LayerMask _wallLayer = 0;
     /// <summary>移動方向</summary>
-    float _moveDirection = 1;
+    float _moveDirection = -1;
     Rigidbody2D _rb = default;
     Vector2 m_initialPosition;
     float m_timer;

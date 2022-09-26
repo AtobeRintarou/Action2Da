@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [Header("残機数")]
     [SerializeField] int _life = 3;
     /// <summary>残機表示をする PlayerCounter を保持しておく変数</summary>
-    PlayerCounter _playerCounter;
+    PlayerCounter _playerCounter = null;
     [Header("GameOver 表示用 Text")]
     [SerializeField] Text _gameoverText = null;
     /// <summary>ゲームの状態</summary>
@@ -21,10 +21,7 @@ public class GameManager : MonoBehaviour
 
     private static GameManager _manager;
 
-    private float _startTime;
-    private float _resultTime;
-    private static float _score;
-    public float ResultTime { get => _resultTime; private set => _resultTime = value; }
+    public static float ResultTime { get; set; }
     public static GameManager Instance { get => _manager; private set => _manager = value; }
     public static int Score { get; set; }
     void Start()
@@ -88,7 +85,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void GameOver()
     {
-        ResultTime = Time.time - _startTime;
         Debug.Log("Game over. Load scene.");
         if (_sceneLoader)
         {
@@ -97,7 +93,6 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame()
     {
-        _startTime = Time.time;
         Score = 0;
     }
 }

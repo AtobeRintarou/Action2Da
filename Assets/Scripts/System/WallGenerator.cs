@@ -21,7 +21,7 @@ public class WallGenerator : MonoBehaviour
     void Update()
     {
         m_timer += Time.deltaTime;
-        if (SceneManager.GetActiveScene().name == "Stage1" || SceneManager.GetActiveScene().name == "Endress")
+        if (SceneManager.GetActiveScene().name == "InfinitRun")
         {
             // タイマーの値が生成間隔を超えたら
             if (m_timer > m_wallGenerateInterval)

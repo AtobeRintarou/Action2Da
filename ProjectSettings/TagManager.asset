@@ -18,6 +18,7 @@ TagManager:
   - EnemyBullet
   - Enemy6
   - GameManager
+  - Wall
   layers:
   - Default
   - TransparentFX

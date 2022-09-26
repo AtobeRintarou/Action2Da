@@ -10,8 +10,7 @@ public class EnemyPlus : MonoBehaviour
     [SerializeField] Transform _transform;
     void Start()
     {
-        _enemy = GameObject.FindGameObjectWithTag("Enemy6").GetComponent<EnemyController>();
-
+        _enemy = this.gameObject.GetComponent<EnemyController>();
     }
 
     void Update()
@@ -28,7 +27,7 @@ public class EnemyPlus : MonoBehaviour
 
         if (_enemy.Hp < 1)
         {
-            for (int i = 1; i <= 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 GameObject bullet = Instantiate(_enemyPrefab);
                 bullet.transform.position = _transform.position;

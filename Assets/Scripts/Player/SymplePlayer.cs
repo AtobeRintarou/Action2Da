@@ -61,6 +61,12 @@ public class SymplePlayer : MonoBehaviour
             {
                 gm.PlayerDead();
             }
+
+            TimeController tc = GameObject.FindObjectOfType<TimeController>();
+            if (tc)
+            {
+                tc.TimeStop();
+            }
             Debug.Log("îªåàÅAínçñçsÇ´");
         }
 

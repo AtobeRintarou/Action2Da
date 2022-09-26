@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 127112448}
   - component: {fileID: 127112450}
   - component: {fileID: 127112449}
+  - component: {fileID: 127112451}
   m_Layer: 0
   m_Name: Square
   m_TagString: Ground
@@ -314,6 +315,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &127112451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127112447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2452ba519dee1f2438954a499096c037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_moveSpeed: 5
 --- !u!1 &395805625
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,6 +1048,7 @@ GameObject:
   - component: {fileID: 1874907088}
   - component: {fileID: 1874907087}
   - component: {fileID: 1874907086}
+  - component: {fileID: 1874907090}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1111,5 +1126,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4a1d610aeb373945960eeb0652b6894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_wallPrefabs: []
-  m_wallGenerateInterval: 2
+  m_wallPrefabs:
+  - {fileID: 1857413645459655969, guid: 7b002b6a5379d6844bf1f8f16902f54a, type: 3}
+  - {fileID: 5136892093311080690, guid: 80be62eef20e90c4f981352df7323810, type: 3}
+  - {fileID: 6467961627040700757, guid: abd6f2424b6a5ba42aa45139eb8cc9f4, type: 3}
+  - {fileID: 6851078451749077788, guid: 84a0d811e3f8eb04488e43e41478933e, type: 3}
+  - {fileID: 8830101046118181988, guid: 9391e57a1265cbd4282ab5c6f42b3f46, type: 3}
+  - {fileID: 6384195541052553677, guid: 2afd86400f5ab484ab72c130d8dc11a4, type: 3}
+  - {fileID: 7486809575795664238, guid: 13e2469f50b16ed45bb3f07ad1c7723a, type: 3}
+  - {fileID: 8639259993474976902, guid: 5b327b78e67abc849984b2ea68570235, type: 3}
+  - {fileID: 6183092069785484649, guid: 73d4d83f3f9597249916b1a961e2078d, type: 3}
+  - {fileID: 2976987269402753, guid: e8d16b93b71da144da0c004c66f40f3b, type: 3}
+  m_wallGenerateInterval: 2.5
+--- !u!114 &1874907090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874907084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d4ef6272451c946bea94a201c13e25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerUiSprite: {fileID: 0}
+  m_spriteSize: {x: 50, y: 50}
+  m_playerCounterPanel: {fileID: 0}
