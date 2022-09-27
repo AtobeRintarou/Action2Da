@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 8371247610995091189}
   - component: {fileID: 8371247610995091188}
   - component: {fileID: 8371247610995091179}
+  - component: {fileID: 6764353734433403811}
   m_Layer: 3
   m_Name: Enemy5
   m_TagString: Enemy
@@ -227,3 +228,23 @@ MonoBehaviour:
   _enemyBulletPrefab: {fileID: 4258591161004522260, guid: 4334c19dcd5697f4c8c584c754ce34e6, type: 3}
   _fireInterval: 2
   _muzzle: {fileID: 8371247609336189742}
+--- !u!95 &6764353734433403811
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8371247610995091178}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ab15edb91f397d84989c5e5b4680bb37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -18,20 +18,25 @@ public class EnemyJumping : MonoBehaviour
     Vector2 _moveDirection = Vector2.left;
     Rigidbody2D _rb = default;
     float _timer;
-
+    bool isGround = true;
+    Animator _anim;
     void Start()
     {
+        _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
+        _anim.SetBool("isGround", isGround);
         _timer += Time.deltaTime;
         if (_timer > _fireInterval)
         {
+            isGround = false;
             _rb.AddForce(Vector2.up * _force, ForceMode2D.Impulse);
             _timer = 0f;
         }
+        isGround = true;
         MoveWithTurn();
     }
 

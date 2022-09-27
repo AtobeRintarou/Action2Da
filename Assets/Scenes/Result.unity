@@ -1316,5 +1316,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: RankingText
       objectReference: {fileID: 0}
+    - target: {fileID: 1591334918918352467, guid: 46ab18882671d034187ed4f47d7147ed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -949.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 1591334918918352467, guid: 46ab18882671d034187ed4f47d7147ed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -453.89
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46ab18882671d034187ed4f47d7147ed, type: 3}

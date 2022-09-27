@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7132993171924524074}
   - component: {fileID: 7132993171924524075}
   - component: {fileID: 7132993171924524068}
+  - component: {fileID: 8807014410419052876}
   m_Layer: 3
   m_Name: Enemy6
   m_TagString: Enemy6
@@ -164,3 +165,23 @@ MonoBehaviour:
   _speed: 1.5
   _enemyPrefab: {fileID: 6779477273571029604, guid: be51b3e6b0330d94b8d179699e619944, type: 3}
   _transform: {fileID: 7132993171924524079}
+--- !u!95 &8807014410419052876
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7132993171924524069}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8d6c6b4c9e854a64190cc1061528e0a0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
