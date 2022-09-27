@@ -640,6 +640,14 @@ PrefabInstance:
       propertyPath: m_Text
       value: "2\u4F4D:000\u79D2"
       objectReference: {fileID: 0}
+    - target: {fileID: 1591334918918352467, guid: 46ab18882671d034187ed4f47d7147ed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -949.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1591334918918352467, guid: 46ab18882671d034187ed4f47d7147ed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -454
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46ab18882671d034187ed4f47d7147ed, type: 3}
 --- !u!4 &367961431 stripped
